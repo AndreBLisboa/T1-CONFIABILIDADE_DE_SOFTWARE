@@ -78,15 +78,15 @@ cppcheck:
 
 valgrind:
 	$(C_COMPILER) -g -Wall -Wfatal-errors $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET) -v
+	valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET1) -v
 
 sanitizer:
 	$(C_COMPILER) -g -Wall -Wfatal-errors -fsanitize=address $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
-	./$(TARGET) -v
+	./$(TARGET1) -v
 
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
-	./$(TARGET) -v
+	./$(TARGET1) -v
 	gcov -b TestSort.c
 
 ci: CFLAGS += -Werror
