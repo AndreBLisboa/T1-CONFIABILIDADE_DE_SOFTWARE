@@ -87,7 +87,7 @@ sanitizer:
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET) -v
-	gcov -b Test.c
+	gcov -b TestSort.c
 
 ci: CFLAGS += -Werror
 ci: compile
