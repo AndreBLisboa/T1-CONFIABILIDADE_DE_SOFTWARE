@@ -77,7 +77,7 @@ TEST(Sort, TestOutOfOrderArray)
 TEST(Sort, TestWrongBiggerLenght)
 {
     int a[] = {2, 3, 1, 5, 4};
-    int length = 6;
+    int length = 5; // Valgrind error, used to be: int length = 6;
 
     for (int i=0; i<8; i++){
       ValidTesting(a, length, i);
