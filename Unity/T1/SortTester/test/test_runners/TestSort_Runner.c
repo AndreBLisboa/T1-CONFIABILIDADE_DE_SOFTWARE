@@ -15,6 +15,7 @@ TEST_GROUP_RUNNER(Sort)
   RUN_TEST_CASE(Sort, TestOutOfOrderArray);
   RUN_TEST_CASE(Sort, TestTwoValuesArray);
   RUN_TEST_CASE(Sort, TestTwentyValuesArray);
+  RUN_TEST_CASE(Sort, TestTwentyOneValuesArray);
   RUN_TEST_CASE(Sort, TestSameValuesArray);
   RUN_TEST_CASE(Sort, TestOneValueArray);
   RUN_TEST_CASE(Sort, TestOrderedArray);

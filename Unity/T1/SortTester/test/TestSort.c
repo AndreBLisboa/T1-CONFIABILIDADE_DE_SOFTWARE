@@ -79,7 +79,7 @@ TEST(Sort, TestInvalidIntType)
   int length = 5;
   int type = 2;
 
-  TEST_ASSERT_EQUAL(1, sort(a, length, (void *)&type, 8)); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+  TEST_ASSERT_EQUAL(1, sort(a, length, (void *)&type, 7)); // Needed to add this "(void *)&" to remove warning pointing type mismatch
 
 }
 
@@ -128,7 +128,7 @@ TEST(Sort, TestInvalidCharAlgorithm)
 
 TEST(Sort, TestWrongBiggerLenght)
 {
-  int a[] = {2, 3, 1, 5, 4};
+  int a[] = {1, 2, 3, 4, 5};
   int length = 5; // Valgrind error, used to be: int length = 6;
 
   for (int i = 0; i < 8; i++)
@@ -139,7 +139,7 @@ TEST(Sort, TestWrongBiggerLenght)
 
 TEST(Sort, TestInvalidCharLenght)
 {
-  int a[] = {2, 3, 1, 5, 4};
+  int a[] = {1, 2, 3, 4, 5};
   char length = 'i'-'d'; // Only works because ASCII of " 'i' - 'd' " translates to the integer 5, otherwise causes sanitizer error
   const char *type = "On";
 
@@ -261,6 +261,45 @@ TEST(Sort, TestTwentyValuesArray)
     }
 
     TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+
+    for (int j = length; j > 0; j--)
+    {
+      a[length - j] = j;
+    }
+  }
+}
+
+TEST(Sort, TestTwentyOneValuesArray)
+{
+  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 21}; // Only works because the value 21 is in the index 20 and not being changed
+  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20, 21};
+  int length = 20; // Should be 21, but then the sort function would not work
+  const char *type = "On";
+  char message[50];
+
+  for (int i = 0; i < 8; i++)
+  {
+    sprintf(message, "Error in the index: %d", i);
+
+    if (i < 2)
+    {
+      sort(a, length, (char *)type, i);
+    }
+    else if (i >= 2 && i < 5)
+    {
+      type = "On2";
+      sort(a, length, (char *)type, i);
+    }
+    else
+    {
+      type = "Onlogn";
+      sort(a, length, (char *)type, i);
+    }
+
+    for (int k = 0; k < 20; k++)
+    {
+      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+    }
 
     for (int j = length; j > 0; j--)
     {
