@@ -20,8 +20,8 @@ TEST_GROUP_RUNNER(Sort)
   RUN_TEST_CASE(Sort, TestOrderedArray);
   RUN_TEST_CASE(Sort, TestLowerHalfArray);
   RUN_TEST_CASE(Sort, TestUpperHalfArray);
-  //RUN_TEST_CASE(Sort, TestEmptyArray);
-  //RUN_TEST_CASE(Sort, TestFloatValueArray);
-  //RUN_TEST_CASE(Sort, TestCharValueArray);
-  //RUN_TEST_CASE(Sort, TestNegativeValuesArray);
+  RUN_TEST_CASE(Sort, TestEmptyArray);
+  //RUN_TEST_CASE(Sort, TestFloatValueArray); // This test has been commented because it results in segmentation fault
+  //RUN_TEST_CASE(Sort, TestCharValueArray); // This test has been commented because it results in segmentation fault
+  //RUN_TEST_CASE(Sort, TestNegativeValuesArray); // This test has been commented because it results in segmentation fault
 }
