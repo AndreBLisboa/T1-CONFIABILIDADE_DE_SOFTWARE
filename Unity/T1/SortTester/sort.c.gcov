@@ -1,0 +1,107 @@
+        -:    0:Source:src/sort.c
+        -:    1:#include "sort.h"
+        -:    2:
+function sort called 123 returned 100% blocks executed 100%
+      123:    3:int sort(int* a, int length, char* type, int algorithm) {
+      123:    4:    int status = 0;
+      123:    5:    int *s = (int*)malloc(sizeof(int)*length);
+      123:    6:    memcpy(s,a,sizeof(int)*(length));
+      123:    7:    if (length < 2 || length > 20) {
+branch  0 taken 93% (fallthrough)
+branch  1 taken 7%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        8:    8:        status = 1;
+        -:    9:    }
+        -:   10:    else {
+      115:   11:        switch(algorithm){
+branch  0 taken 12%
+branch  1 taken 12%
+branch  2 taken 12%
+branch  3 taken 12%
+branch  4 taken 12%
+branch  5 taken 12%
+branch  6 taken 12%
+branch  7 taken 13%
+branch  8 taken 2%
+       14:   12:            case COUNTING:
+       14:   13:                if (!strcmp(type,"On"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   14:                    counting_sort(s, length);
+call    0 returned 100%
+        -:   15:                else
+        3:   16:                    status = 1;
+       14:   17:                break;
+       14:   18:            case RADIX:
+       14:   19:                if (!strcmp(type,"On"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   20:                    radix_sort(s, length);
+call    0 returned 100%
+        -:   21:                else
+        3:   22:                    status = 1;
+       14:   23:                break;
+       14:   24:            case BUBBLE:
+       14:   25:                if (!strcmp(type,"On2"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   26:                    bubble_sort(s, length);
+call    0 returned 100%
+        -:   27:                else
+        3:   28:                    status = 1;
+       14:   29:                break;
+       14:   30:            case INSERTION:
+       14:   31:                if (!strcmp(type,"On2"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   32:                    insertion_sort(s, length);
+call    0 returned 100%
+        -:   33:                else
+        3:   34:                    status = 1;
+       14:   35:                break;
+       14:   36:            case SELECTION:
+       14:   37:                if (!strcmp(type,"On2"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   38:                    selection_sort(s, length);
+call    0 returned 100%
+        -:   39:                else
+        3:   40:                    status = 1;
+       14:   41:                break;
+       14:   42:            case HEAP:
+       14:   43:                if (!strcmp(type,"Onlogn"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   44:                    heap_sort(s, length);
+call    0 returned 100%
+        -:   45:                else
+        3:   46:                    status = 1;
+       14:   47:                break;
+       14:   48:            case MERGE:
+       14:   49:                if (!strcmp(type,"Onlogn"))
+branch  0 taken 79% (fallthrough)
+branch  1 taken 21%
+       11:   50:                    merge_sort(s, 0, length - 1);
+call    0 returned 100%
+        -:   51:                else
+        3:   52:                    status = 1;
+       14:   53:                break;
+       15:   54:            case QUICK:
+       15:   55:                if (!strcmp(type,"Onlogn"))
+branch  0 taken 73% (fallthrough)
+branch  1 taken 27%
+       11:   56:                    quick_sort(s, 0, length - 1);
+call    0 returned 100%
+        -:   57:                else
+        4:   58:                    status = 1;
+       15:   59:                break;
+        2:   60:            default:
+        2:   61:                status = 1;
+        2:   62:                break;
+        -:   63:            }
+        -:   64:    }
+      123:   65:    memcpy(a,s,sizeof(int)*(length));
+      123:   66:    free(s);
+      123:   67:    return status;
+        -:   68:}

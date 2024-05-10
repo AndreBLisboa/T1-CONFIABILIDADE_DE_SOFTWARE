@@ -1,0 +1,45 @@
+        -:    0:Source:src/quick_sort.c
+        -:    1://Implementation of Quick Sort in C
+        -:    2:#include <stdio.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#define swap(t, x, y) { t z = x; x = y; y = z; }
+        -:    5:typedef int TYPE;
+        -:    6:int partition(TYPE [], int, int);
+        -:    7:void quick_sort(TYPE [], int, int);
+        -:    8:
+function partition called 82 returned 100% blocks executed 100%
+       82:    9:int partition(TYPE A[], int p, int r) {
+       82:   10:    TYPE x = A[r]; //pivot
+       82:   11:    int i = p - 1, j;
+      503:   12:    for(j = p; j < r ; j++) {
+branch  0 taken 84%
+branch  1 taken 16% (fallthrough)
+      421:   13:        if(A[j] <= x) {
+branch  0 taken 56% (fallthrough)
+branch  1 taken 44%
+      234:   14:            i = i + 1;
+      234:   15:            swap(TYPE, A[i], A[j]); 
+        -:   16:        }
+        -:   17:    }
+       82:   18:    i = i + 1;
+       82:   19:    swap(TYPE, A[i], A[r]);
+       82:   20:    return i;
+        -:   21:}
+function quick_sort called 175 returned 100% blocks executed 100%
+      175:   22:void quick_sort(TYPE A[], int p, int r) {
+      175:   23:    if(p < r) {
+branch  0 taken 47% (fallthrough)
+branch  1 taken 53%
+       82:   24:        int t = (rand() % ( r - p + 1) + p);
+call    0 returned 100%
+       82:   25:        swap(TYPE, A[t], A[r]); 
+        -:   26:        //Used to avoid O(n^2) worst case
+        -:   27:        
+       82:   28:        int q = partition(A, p, r);
+call    0 returned 100%
+       82:   29:        quick_sort(A, p, q - 1);
+call    0 returned 100%
+       82:   30:        quick_sort(A, q + 1, r);
+call    0 returned 100%
+        -:   31:    }
+      175:   32:}

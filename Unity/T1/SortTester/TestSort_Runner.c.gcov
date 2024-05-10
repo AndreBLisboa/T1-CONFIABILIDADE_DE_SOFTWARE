@@ -1,0 +1,48 @@
+        -:    0:Source:test/test_runners/TestSort_Runner.c
+        -:    1:#include "unity.h"
+        -:    2:#include "unity_fixture.h"
+        -:    3:
+function TEST_Sort_GROUP_RUNNER called 1 returned 100% blocks executed 100%
+        1:    4:TEST_GROUP_RUNNER(Sort)
+        -:    5:{
+        1:    6:  RUN_TEST_CASE(Sort, TestEverythingValid);
+call    0 returned 100%
+        1:    7:  RUN_TEST_CASE(Sort, TestInvalidType);
+call    0 returned 100%
+        1:    8:  RUN_TEST_CASE(Sort, TestInvalidIntType);
+call    0 returned 100%
+        1:    9:  RUN_TEST_CASE(Sort, TestInvalidEmptyType);
+call    0 returned 100%
+        1:   10:  RUN_TEST_CASE(Sort, TestValidButWrongType);
+call    0 returned 100%
+        1:   11:  RUN_TEST_CASE(Sort, TestInvalidAlgorithm);
+call    0 returned 100%
+        1:   12:  RUN_TEST_CASE(Sort, TestInvalidCharAlgorithm);
+call    0 returned 100%
+        1:   13:  RUN_TEST_CASE(Sort, TestWrongBiggerLenght);
+call    0 returned 100%
+        1:   14:  RUN_TEST_CASE(Sort, TestInvalidCharLenght);
+call    0 returned 100%
+        1:   15:  RUN_TEST_CASE(Sort, TestOutOfOrderArray);
+call    0 returned 100%
+        1:   16:  RUN_TEST_CASE(Sort, TestTwoValuesArray);
+call    0 returned 100%
+        1:   17:  RUN_TEST_CASE(Sort, TestTwentyValuesArray);
+call    0 returned 100%
+        1:   18:  RUN_TEST_CASE(Sort, TestTwentyOneValuesArray);
+call    0 returned 100%
+        1:   19:  RUN_TEST_CASE(Sort, TestSameValuesArray);
+call    0 returned 100%
+        1:   20:  RUN_TEST_CASE(Sort, TestOneValueArray);
+call    0 returned 100%
+        1:   21:  RUN_TEST_CASE(Sort, TestOrderedArray);
+call    0 returned 100%
+        1:   22:  RUN_TEST_CASE(Sort, TestLowerHalfArray);
+call    0 returned 100%
+        1:   23:  RUN_TEST_CASE(Sort, TestUpperHalfArray);
+call    0 returned 100%
+        -:   24:  //RUN_TEST_CASE(Sort, TestEmptyArray); // This test has been commented because it results in gcov error
+        -:   25:  //RUN_TEST_CASE(Sort, TestFloatValueArray); // This test has been commented because it results in segmentation fault
+        -:   26:  //RUN_TEST_CASE(Sort, TestCharValueArray); // This test has been commented because it results in segmentation fault
+        -:   27:  //RUN_TEST_CASE(Sort, TestNegativeValuesArray); // This test has been commented because it results in segmentation fault
+        1:   28:}

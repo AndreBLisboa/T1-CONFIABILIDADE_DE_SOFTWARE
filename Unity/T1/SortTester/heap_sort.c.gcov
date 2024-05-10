@@ -1,0 +1,77 @@
+        -:    0:Source:src/heap_sort.c
+        -:    1:/*Heap sort implementation in C*/
+        -:    2:#include <stdio.h>
+        -:    3:#include <stdlib.h>
+        -:    4:typedef int TYPE;
+        -:    5:int left(int);
+        -:    6:int right(int); 
+        -:    7:int parent(int);
+        -:    8:void max_heapify(TYPE [], int, int);
+        -:    9:void build_max_heap(TYPE [], int);
+        -:   10:void heap_sort(TYPE [], int);
+        -:   11:
+function heap_sort called 11 returned 100% blocks executed 100%
+       11:   12:void heap_sort(TYPE a[], int length){
+       11:   13:    build_max_heap(a, length);
+call    0 returned 100%
+       11:   14:    int i = length - 1;
+        -:   15:    do {
+      127:   16:        TYPE temp = a[0];
+      127:   17:        a[0] = a[i];
+      127:   18:        a[i] = temp;
+        -:   19:        
+      127:   20:        max_heapify(a, 0, --length);
+call    0 returned 100%
+      127:   21:    } while(--i >= 0);
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+       11:   22:}
+function build_max_heap called 11 returned 100% blocks executed 100%
+       11:   23:void build_max_heap(TYPE a[], int length){
+       11:   24:    int i = length/2;
+        -:   25:    do {
+       72:   26:        max_heapify(a, i, length);
+call    0 returned 100%
+       72:   27:    }while(--i  >= 0); //first i = i - 1 is doen and then i >= 0 afterwards.
+branch  0 taken 85%
+branch  1 taken 15% (fallthrough)
+       11:   28:}
+function max_heapify called 454 returned 100% blocks executed 100%
+      454:   29:void max_heapify(TYPE a[], int i, int length){
+      454:   30:    int r = right(i);
+call    0 returned 100%
+      454:   31:    int l = left(i);
+call    0 returned 100%
+      454:   32:    int max = i;
+      454:   33:    if(l < length && a[max] < a[l]) max = l;
+branch  0 taken 69% (fallthrough)
+branch  1 taken 31%
+branch  2 taken 75% (fallthrough)
+branch  3 taken 25%
+      454:   34:    if(r < length && a[max] < a[r]) max = r;
+branch  0 taken 63% (fallthrough)
+branch  1 taken 37%
+branch  2 taken 39% (fallthrough)
+branch  3 taken 61%
+      454:   35:    if(max != i) {
+branch  0 taken 56% (fallthrough)
+branch  1 taken 44%
+      255:   36:        TYPE temp = a[i];
+      255:   37:        a[i] = a[max];
+      255:   38:        a[max] = temp;
+      255:   39:        max_heapify(a, max, length);
+call    0 returned 100%
+        -:   40:    }
+      454:   41:}
+function left called 454 returned 100% blocks executed 100%
+      454:   42:int left(int i) {
+      454:   43:    return 2*i + 1;
+        -:   44:}
+function right called 454 returned 100% blocks executed 100%
+      454:   45:int right(int i) {
+      454:   46:    return 2*i + 2;
+        -:   47:}
+function parent called 0 returned 0% blocks executed 0%
+    #####:   48:int parent(int i) {
+    #####:   49:    return (i - 1)/2;
+        -:   50:}

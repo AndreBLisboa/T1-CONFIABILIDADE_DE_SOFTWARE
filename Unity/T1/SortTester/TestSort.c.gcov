@@ -1,0 +1,1546 @@
+        -:    0:Source:test/TestSort.c
+        -:    1:#include "sort.h"
+        -:    2:#include "unity.h"
+        -:    3:#include "unity_fixture.h"
+        -:    4:
+        -:    5:TEST_GROUP(Sort);
+        -:    6:
+function TEST_Sort_SETUP called 18 returned 100% blocks executed 100%
+       18:    7:TEST_SETUP(Sort)
+        -:    8:{
+       18:    9:}
+        -:   10:
+function TEST_Sort_TEAR_DOWN called 18 returned 100% blocks executed 100%
+       18:   11:TEST_TEAR_DOWN(Sort)
+        -:   12:{
+       18:   13:}
+        -:   14:
+function ValidTesting called 24 returned 100% blocks executed 100%
+       24:   15:void ValidTesting(int *a, int length, int index)
+        -:   16:{
+       24:   17:  const char *type = "On";
+       24:   18:  if (index < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:   19:  {
+        6:   20:    TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   21:  }
+       18:   22:  else if (index >= 2 && index < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:   23:  {
+        9:   24:    type = "On2";
+        9:   25:    TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   26:  }
+        -:   27:  else
+        -:   28:  {
+        9:   29:    type = "Onlogn";
+        9:   30:    TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   31:  }
+       24:   32:}
+        -:   33:
+function InvalidTesting called 8 returned 100% blocks executed 100%
+        8:   34:void InvalidTesting(int *a, int length, int index)
+        -:   35:{
+        8:   36:  const char *type = "On2";
+        8:   37:  if (index < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:   38:  {
+        2:   39:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   40:  }
+        6:   41:  else if (index >= 2 && index < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:   42:  {
+        3:   43:    type = "Onlogn";
+        3:   44:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   45:  }
+        -:   46:  else
+        -:   47:  {
+        3:   48:    type = "On";
+        3:   49:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, index));
+call    0 returned 100%
+call    1 returned 100%
+        -:   50:  }
+        8:   51:}
+        -:   52:
+        2:   53:TEST(Sort, TestEverythingValid)
+        -:   54:{
+        1:   55:  int a[] = {1, 2, 3, 4, 5};
+        1:   56:  int length = 5;
+        -:   57:
+        9:   58:  for (int i = 0; i < 8; i++)
+        -:   59:  {
+        8:   60:    ValidTesting(a, length, i);
+        -:   61:  }
+        1:   62:}
+------------------
+TEST_Sort_TestEverythingValid_:
+function TEST_Sort_TestEverythingValid_ called 1 returned 100% blocks executed 100%
+        1:   53:TEST(Sort, TestEverythingValid)
+        -:   54:{
+        1:   55:  int a[] = {1, 2, 3, 4, 5};
+        1:   56:  int length = 5;
+        -:   57:
+        9:   58:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:   59:  {
+        8:   60:    ValidTesting(a, length, i);
+call    0 returned 100%
+        -:   61:  }
+        1:   62:}
+------------------
+TEST_Sort_TestEverythingValid_run:
+function TEST_Sort_TestEverythingValid_run called 1 returned 100% blocks executed 100%
+        1:   53:TEST(Sort, TestEverythingValid)
+call    0 returned 100%
+------------------
+        -:   63:
+        2:   64:TEST(Sort, TestInvalidType)
+        -:   65:{
+        1:   66:  int a[] = {1, 2, 3, 4, 5};
+        1:   67:  int length = 5;
+        1:   68:  const char *type = "T1";
+        -:   69:
+        9:   70:  for (int i = 0; i < 8; i++)
+        -:   71:  {
+        8:   72:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, i));
+        -:   73:  }
+        1:   74:}
+------------------
+TEST_Sort_TestInvalidType_:
+function TEST_Sort_TestInvalidType_ called 1 returned 100% blocks executed 100%
+        1:   64:TEST(Sort, TestInvalidType)
+        -:   65:{
+        1:   66:  int a[] = {1, 2, 3, 4, 5};
+        1:   67:  int length = 5;
+        1:   68:  const char *type = "T1";
+        -:   69:
+        9:   70:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:   71:  {
+        8:   72:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, i));
+call    0 returned 100%
+call    1 returned 100%
+        -:   73:  }
+        1:   74:}
+------------------
+TEST_Sort_TestInvalidType_run:
+function TEST_Sort_TestInvalidType_run called 1 returned 100% blocks executed 100%
+        1:   64:TEST(Sort, TestInvalidType)
+call    0 returned 100%
+------------------
+        -:   75:
+        2:   76:TEST(Sort, TestInvalidIntType)
+        -:   77:{
+        1:   78:  int a[] = {1, 2, 3, 4, 5};
+        1:   79:  int length = 5;
+        1:   80:  int type = 2;
+        -:   81:
+        1:   82:  TEST_ASSERT_EQUAL(1, sort(a, length, (void *)&type, 7)); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:   83:
+        1:   84:}
+------------------
+TEST_Sort_TestInvalidIntType_:
+function TEST_Sort_TestInvalidIntType_ called 1 returned 100% blocks executed 100%
+        1:   76:TEST(Sort, TestInvalidIntType)
+        -:   77:{
+        1:   78:  int a[] = {1, 2, 3, 4, 5};
+        1:   79:  int length = 5;
+        1:   80:  int type = 2;
+        -:   81:
+        1:   82:  TEST_ASSERT_EQUAL(1, sort(a, length, (void *)&type, 7)); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 returned 100%
+call    1 returned 100%
+        -:   83:
+        1:   84:}
+------------------
+TEST_Sort_TestInvalidIntType_run:
+function TEST_Sort_TestInvalidIntType_run called 1 returned 100% blocks executed 100%
+        1:   76:TEST(Sort, TestInvalidIntType)
+call    0 returned 100%
+------------------
+        -:   85:
+        2:   86:TEST(Sort, TestInvalidEmptyType)
+        -:   87:{
+        1:   88:  int a[] = {1, 2, 3, 4, 5};
+        1:   89:  int length = 5;
+        1:   90:  const char *type = "";
+        -:   91:
+        9:   92:  for (int i = 0; i < 8; i++)
+        -:   93:  {
+        8:   94:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, i));
+        -:   95:  }
+        1:   96:}
+------------------
+TEST_Sort_TestInvalidEmptyType_:
+function TEST_Sort_TestInvalidEmptyType_ called 1 returned 100% blocks executed 100%
+        1:   86:TEST(Sort, TestInvalidEmptyType)
+        -:   87:{
+        1:   88:  int a[] = {1, 2, 3, 4, 5};
+        1:   89:  int length = 5;
+        1:   90:  const char *type = "";
+        -:   91:
+        9:   92:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:   93:  {
+        8:   94:    TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, i));
+call    0 returned 100%
+call    1 returned 100%
+        -:   95:  }
+        1:   96:}
+------------------
+TEST_Sort_TestInvalidEmptyType_run:
+function TEST_Sort_TestInvalidEmptyType_run called 1 returned 100% blocks executed 100%
+        1:   86:TEST(Sort, TestInvalidEmptyType)
+call    0 returned 100%
+------------------
+        -:   97:
+        2:   98:TEST(Sort, TestValidButWrongType)
+        -:   99:{
+        1:  100:  int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        1:  101:  int length = 10;
+        -:  102:
+        9:  103:  for (int i = 0; i < 8; i++)
+        -:  104:  {
+        8:  105:    InvalidTesting(a, length, i);
+        -:  106:  }
+        1:  107:}
+------------------
+TEST_Sort_TestValidButWrongType_:
+function TEST_Sort_TestValidButWrongType_ called 1 returned 100% blocks executed 100%
+        1:   98:TEST(Sort, TestValidButWrongType)
+        -:   99:{
+        1:  100:  int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        1:  101:  int length = 10;
+        -:  102:
+        9:  103:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  104:  {
+        8:  105:    InvalidTesting(a, length, i);
+call    0 returned 100%
+        -:  106:  }
+        1:  107:}
+------------------
+TEST_Sort_TestValidButWrongType_run:
+function TEST_Sort_TestValidButWrongType_run called 1 returned 100% blocks executed 100%
+        1:   98:TEST(Sort, TestValidButWrongType)
+call    0 returned 100%
+------------------
+        -:  108:
+        2:  109:TEST(Sort, TestInvalidAlgorithm)
+        -:  110:{
+        1:  111:  int a[] = {1, 2, 3, 4, 5};
+        1:  112:  int length = 5;
+        1:  113:  const char *type = "On";
+        -:  114:
+        1:  115:  TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, 9));
+        -:  116:
+        1:  117:}
+------------------
+TEST_Sort_TestInvalidAlgorithm_:
+function TEST_Sort_TestInvalidAlgorithm_ called 1 returned 100% blocks executed 100%
+        1:  109:TEST(Sort, TestInvalidAlgorithm)
+        -:  110:{
+        1:  111:  int a[] = {1, 2, 3, 4, 5};
+        1:  112:  int length = 5;
+        1:  113:  const char *type = "On";
+        -:  114:
+        1:  115:  TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, 9));
+call    0 returned 100%
+call    1 returned 100%
+        -:  116:
+        1:  117:}
+------------------
+TEST_Sort_TestInvalidAlgorithm_run:
+function TEST_Sort_TestInvalidAlgorithm_run called 1 returned 100% blocks executed 100%
+        1:  109:TEST(Sort, TestInvalidAlgorithm)
+call    0 returned 100%
+------------------
+        -:  118:
+        2:  119:TEST(Sort, TestInvalidCharAlgorithm)
+        -:  120:{
+        1:  121:  int a[] = {1, 2, 3, 4, 5};
+        1:  122:  int length = 5;
+        1:  123:  const char *type = "On";
+        -:  124:
+        1:  125:  TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, 'a'));
+        -:  126:
+        1:  127:}
+------------------
+TEST_Sort_TestInvalidCharAlgorithm_:
+function TEST_Sort_TestInvalidCharAlgorithm_ called 1 returned 100% blocks executed 100%
+        1:  119:TEST(Sort, TestInvalidCharAlgorithm)
+        -:  120:{
+        1:  121:  int a[] = {1, 2, 3, 4, 5};
+        1:  122:  int length = 5;
+        1:  123:  const char *type = "On";
+        -:  124:
+        1:  125:  TEST_ASSERT_EQUAL(1, sort(a, length, (char *)type, 'a'));
+call    0 returned 100%
+call    1 returned 100%
+        -:  126:
+        1:  127:}
+------------------
+TEST_Sort_TestInvalidCharAlgorithm_run:
+function TEST_Sort_TestInvalidCharAlgorithm_run called 1 returned 100% blocks executed 100%
+        1:  119:TEST(Sort, TestInvalidCharAlgorithm)
+call    0 returned 100%
+------------------
+        -:  128:
+        2:  129:TEST(Sort, TestWrongBiggerLenght)
+        -:  130:{
+        1:  131:  int a[] = {1, 2, 3, 4, 5};
+        1:  132:  int length = 5; // Valgrind error, used to be: int length = 6;
+        -:  133:
+        9:  134:  for (int i = 0; i < 8; i++)
+        -:  135:  {
+        8:  136:    ValidTesting(a, length, i);
+        -:  137:  }
+        1:  138:}
+------------------
+TEST_Sort_TestWrongBiggerLenght_:
+function TEST_Sort_TestWrongBiggerLenght_ called 1 returned 100% blocks executed 100%
+        1:  129:TEST(Sort, TestWrongBiggerLenght)
+        -:  130:{
+        1:  131:  int a[] = {1, 2, 3, 4, 5};
+        1:  132:  int length = 5; // Valgrind error, used to be: int length = 6;
+        -:  133:
+        9:  134:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  135:  {
+        8:  136:    ValidTesting(a, length, i);
+call    0 returned 100%
+        -:  137:  }
+        1:  138:}
+------------------
+TEST_Sort_TestWrongBiggerLenght_run:
+function TEST_Sort_TestWrongBiggerLenght_run called 1 returned 100% blocks executed 100%
+        1:  129:TEST(Sort, TestWrongBiggerLenght)
+call    0 returned 100%
+------------------
+        -:  139:
+        2:  140:TEST(Sort, TestInvalidCharLenght)
+        -:  141:{
+        1:  142:  int a[] = {1, 2, 3, 4, 5};
+        1:  143:  char length = 'i'-'d'; // Only works because ASCII of " 'i' - 'd' " translates to the integer 5, otherwise causes sanitizer error
+        1:  144:  const char *type = "On";
+        -:  145:
+        9:  146:  for (int i = 0; i < 8; i++)
+        -:  147:  {
+        8:  148:    if (i < 2)
+        -:  149:    {
+        2:  150:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+        -:  151:    }
+        6:  152:    else if (i >= 2 && i < 5)
+        -:  153:    {
+        3:  154:      type = "On2";
+        3:  155:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+        -:  156:    }
+        -:  157:    else
+        -:  158:    {
+        3:  159:      type = "Onlogn";
+        3:  160:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+        -:  161:    }
+        -:  162:  }
+        1:  163:}
+------------------
+TEST_Sort_TestInvalidCharLenght_:
+function TEST_Sort_TestInvalidCharLenght_ called 1 returned 100% blocks executed 100%
+        1:  140:TEST(Sort, TestInvalidCharLenght)
+        -:  141:{
+        1:  142:  int a[] = {1, 2, 3, 4, 5};
+        1:  143:  char length = 'i'-'d'; // Only works because ASCII of " 'i' - 'd' " translates to the integer 5, otherwise causes sanitizer error
+        1:  144:  const char *type = "On";
+        -:  145:
+        9:  146:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  147:  {
+        8:  148:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  149:    {
+        2:  150:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+call    0 returned 100%
+call    1 returned 100%
+        -:  151:    }
+        6:  152:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  153:    {
+        3:  154:      type = "On2";
+        3:  155:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+call    0 returned 100%
+call    1 returned 100%
+        -:  156:    }
+        -:  157:    else
+        -:  158:    {
+        3:  159:      type = "Onlogn";
+        3:  160:      TEST_ASSERT_EQUAL(0, sort(a, length, (char *)type, i));
+call    0 returned 100%
+call    1 returned 100%
+        -:  161:    }
+        -:  162:  }
+        1:  163:}
+------------------
+TEST_Sort_TestInvalidCharLenght_run:
+function TEST_Sort_TestInvalidCharLenght_run called 1 returned 100% blocks executed 100%
+        1:  140:TEST(Sort, TestInvalidCharLenght)
+call    0 returned 100%
+------------------
+        -:  164:
+        2:  165:TEST(Sort, TestOutOfOrderArray)
+        -:  166:{
+        1:  167:  int a[] = {5, 4, 3, 2, 1};
+        1:  168:  int arrayOrdered[] = {1, 2, 3, 4, 5};
+        1:  169:  int length = 5;
+        1:  170:  const char *type = "On";
+        -:  171:  char message[50];
+        -:  172:
+        9:  173:  for (int i = 0; i < 8; i++)
+        -:  174:  {
+        8:  175:    sprintf(message, "Error in the index: %d", i);
+        -:  176:
+        8:  177:    if (i < 2)
+        -:  178:    {
+        2:  179:      sort(a, length, (char *)type, i);
+        -:  180:    }
+        6:  181:    else if (i >= 2 && i < 5)
+        -:  182:    {
+        3:  183:      type = "On2";
+        3:  184:      sort(a, length, (char *)type, i);
+        -:  185:    }
+        -:  186:    else
+        -:  187:    {
+        3:  188:      type = "Onlogn";
+        3:  189:      sort(a, length, (char *)type, i);
+        -:  190:    }
+        -:  191:
+        8:  192:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  193:
+       48:  194:    for (int j = length; j > 0; j--)
+        -:  195:    {
+       40:  196:      a[length - j] = j;
+        -:  197:    }
+        -:  198:  }
+        1:  199:}
+------------------
+TEST_Sort_TestOutOfOrderArray_:
+function TEST_Sort_TestOutOfOrderArray_ called 1 returned 100% blocks executed 100%
+        1:  165:TEST(Sort, TestOutOfOrderArray)
+        -:  166:{
+        1:  167:  int a[] = {5, 4, 3, 2, 1};
+        1:  168:  int arrayOrdered[] = {1, 2, 3, 4, 5};
+        1:  169:  int length = 5;
+        1:  170:  const char *type = "On";
+        -:  171:  char message[50];
+        -:  172:
+        9:  173:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  174:  {
+        8:  175:    sprintf(message, "Error in the index: %d", i);
+        -:  176:
+        8:  177:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  178:    {
+        2:  179:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  180:    }
+        6:  181:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  182:    {
+        3:  183:      type = "On2";
+        3:  184:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  185:    }
+        -:  186:    else
+        -:  187:    {
+        3:  188:      type = "Onlogn";
+        3:  189:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  190:    }
+        -:  191:
+        8:  192:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  193:
+       48:  194:    for (int j = length; j > 0; j--)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        -:  195:    {
+       40:  196:      a[length - j] = j;
+        -:  197:    }
+        -:  198:  }
+        1:  199:}
+------------------
+TEST_Sort_TestOutOfOrderArray_run:
+function TEST_Sort_TestOutOfOrderArray_run called 1 returned 100% blocks executed 100%
+        1:  165:TEST(Sort, TestOutOfOrderArray)
+call    0 returned 100%
+------------------
+        -:  200:
+        2:  201:TEST(Sort, TestTwoValuesArray)
+        -:  202:{
+        1:  203:  int a[] = {2, 1};
+        1:  204:  int arrayOrdered[] = {1, 2};
+        1:  205:  int length = 2;
+        1:  206:  const char *type = "On";
+        -:  207:  char message[50];
+        -:  208:
+        9:  209:  for (int i = 0; i < 8; i++)
+        -:  210:  {
+        8:  211:    sprintf(message, "Error in the index: %d", i);
+        -:  212:
+        8:  213:    if (i < 2)
+        -:  214:    {
+        2:  215:      sort(a, length, (char *)type, i);
+        -:  216:    }
+        6:  217:    else if (i >= 2 && i < 5)
+        -:  218:    {
+        3:  219:      type = "On2";
+        3:  220:      sort(a, length, (char *)type, i);
+        -:  221:    }
+        -:  222:    else
+        -:  223:    {
+        3:  224:      type = "Onlogn";
+        3:  225:      sort(a, length, (char *)type, i);
+        -:  226:    }
+        8:  227:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  228:
+       24:  229:    for (int j = length; j > 0; j--)
+        -:  230:    {
+       16:  231:      a[length - j] = j;
+        -:  232:    }
+        -:  233:  }
+        1:  234:}
+------------------
+TEST_Sort_TestTwoValuesArray_:
+function TEST_Sort_TestTwoValuesArray_ called 1 returned 100% blocks executed 100%
+        1:  201:TEST(Sort, TestTwoValuesArray)
+        -:  202:{
+        1:  203:  int a[] = {2, 1};
+        1:  204:  int arrayOrdered[] = {1, 2};
+        1:  205:  int length = 2;
+        1:  206:  const char *type = "On";
+        -:  207:  char message[50];
+        -:  208:
+        9:  209:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  210:  {
+        8:  211:    sprintf(message, "Error in the index: %d", i);
+        -:  212:
+        8:  213:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  214:    {
+        2:  215:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  216:    }
+        6:  217:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  218:    {
+        3:  219:      type = "On2";
+        3:  220:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  221:    }
+        -:  222:    else
+        -:  223:    {
+        3:  224:      type = "Onlogn";
+        3:  225:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  226:    }
+        8:  227:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  228:
+       24:  229:    for (int j = length; j > 0; j--)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  230:    {
+       16:  231:      a[length - j] = j;
+        -:  232:    }
+        -:  233:  }
+        1:  234:}
+------------------
+TEST_Sort_TestTwoValuesArray_run:
+function TEST_Sort_TestTwoValuesArray_run called 1 returned 100% blocks executed 100%
+        1:  201:TEST(Sort, TestTwoValuesArray)
+call    0 returned 100%
+------------------
+        -:  235:
+        2:  236:TEST(Sort, TestTwentyValuesArray)
+        -:  237:{
+        1:  238:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  239:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  240:  int length = 20;
+        1:  241:  const char *type = "On";
+        -:  242:  char message[50];
+        -:  243:
+        9:  244:  for (int i = 0; i < 8; i++)
+        -:  245:  {
+        8:  246:    sprintf(message, "Error in the index: %d", i);
+        -:  247:
+        8:  248:    if (i < 2)
+        -:  249:    {
+        2:  250:      sort(a, length, (char *)type, i);
+        -:  251:    }
+        6:  252:    else if (i >= 2 && i < 5)
+        -:  253:    {
+        3:  254:      type = "On2";
+        3:  255:      sort(a, length, (char *)type, i);
+        -:  256:    }
+        -:  257:    else
+        -:  258:    {
+        3:  259:      type = "Onlogn";
+        3:  260:      sort(a, length, (char *)type, i);
+        -:  261:    }
+        -:  262:
+        8:  263:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  264:
+      168:  265:    for (int j = length; j > 0; j--)
+        -:  266:    {
+      160:  267:      a[length - j] = j;
+        -:  268:    }
+        -:  269:  }
+        1:  270:}
+------------------
+TEST_Sort_TestTwentyValuesArray_:
+function TEST_Sort_TestTwentyValuesArray_ called 1 returned 100% blocks executed 100%
+        1:  236:TEST(Sort, TestTwentyValuesArray)
+        -:  237:{
+        1:  238:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  239:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  240:  int length = 20;
+        1:  241:  const char *type = "On";
+        -:  242:  char message[50];
+        -:  243:
+        9:  244:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  245:  {
+        8:  246:    sprintf(message, "Error in the index: %d", i);
+        -:  247:
+        8:  248:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  249:    {
+        2:  250:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  251:    }
+        6:  252:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  253:    {
+        3:  254:      type = "On2";
+        3:  255:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  256:    }
+        -:  257:    else
+        -:  258:    {
+        3:  259:      type = "Onlogn";
+        3:  260:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  261:    }
+        -:  262:
+        8:  263:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  264:
+      168:  265:    for (int j = length; j > 0; j--)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  266:    {
+      160:  267:      a[length - j] = j;
+        -:  268:    }
+        -:  269:  }
+        1:  270:}
+------------------
+TEST_Sort_TestTwentyValuesArray_run:
+function TEST_Sort_TestTwentyValuesArray_run called 1 returned 100% blocks executed 100%
+        1:  236:TEST(Sort, TestTwentyValuesArray)
+call    0 returned 100%
+------------------
+        -:  271:
+        2:  272:TEST(Sort, TestTwentyOneValuesArray)
+        -:  273:{
+        1:  274:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 21}; // Only works because the value 21 is in the index 20 and not being changed
+        1:  275:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20, 21};
+        1:  276:  int length = 20; // Should be 21, but then the sort function would not work
+        1:  277:  const char *type = "On";
+        -:  278:  char message[50];
+        -:  279:
+        9:  280:  for (int i = 0; i < 8; i++)
+        -:  281:  {
+        8:  282:    sprintf(message, "Error in the index: %d", i);
+        -:  283:
+        8:  284:    if (i < 2)
+        -:  285:    {
+        2:  286:      sort(a, length, (char *)type, i);
+        -:  287:    }
+        6:  288:    else if (i >= 2 && i < 5)
+        -:  289:    {
+        3:  290:      type = "On2";
+        3:  291:      sort(a, length, (char *)type, i);
+        -:  292:    }
+        -:  293:    else
+        -:  294:    {
+        3:  295:      type = "Onlogn";
+        3:  296:      sort(a, length, (char *)type, i);
+        -:  297:    }
+        -:  298:
+      168:  299:    for (int k = 0; k < 20; k++)
+        -:  300:    {
+      160:  301:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+        -:  302:    }
+        -:  303:
+      168:  304:    for (int j = length; j > 0; j--)
+        -:  305:    {
+      160:  306:      a[length - j] = j;
+        -:  307:    }
+        -:  308:  }
+        1:  309:}
+------------------
+TEST_Sort_TestTwentyOneValuesArray_:
+function TEST_Sort_TestTwentyOneValuesArray_ called 1 returned 100% blocks executed 100%
+        1:  272:TEST(Sort, TestTwentyOneValuesArray)
+        -:  273:{
+        1:  274:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 21}; // Only works because the value 21 is in the index 20 and not being changed
+        1:  275:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20, 21};
+        1:  276:  int length = 20; // Should be 21, but then the sort function would not work
+        1:  277:  const char *type = "On";
+        -:  278:  char message[50];
+        -:  279:
+        9:  280:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  281:  {
+        8:  282:    sprintf(message, "Error in the index: %d", i);
+        -:  283:
+        8:  284:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  285:    {
+        2:  286:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  287:    }
+        6:  288:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  289:    {
+        3:  290:      type = "On2";
+        3:  291:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  292:    }
+        -:  293:    else
+        -:  294:    {
+        3:  295:      type = "Onlogn";
+        3:  296:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  297:    }
+        -:  298:
+      168:  299:    for (int k = 0; k < 20; k++)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  300:    {
+      160:  301:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+call    0 returned 100%
+        -:  302:    }
+        -:  303:
+      168:  304:    for (int j = length; j > 0; j--)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  305:    {
+      160:  306:      a[length - j] = j;
+        -:  307:    }
+        -:  308:  }
+        1:  309:}
+------------------
+TEST_Sort_TestTwentyOneValuesArray_run:
+function TEST_Sort_TestTwentyOneValuesArray_run called 1 returned 100% blocks executed 100%
+        1:  272:TEST(Sort, TestTwentyOneValuesArray)
+call    0 returned 100%
+------------------
+        -:  310:
+        2:  311:TEST(Sort, TestSameValuesArray)
+        -:  312:{
+        1:  313:  int a[] = {1, 1, 1, 1, 1};
+        1:  314:  int arrayOrdered[] = {1, 1, 1, 1, 1};
+        1:  315:  int length = 5;
+        -:  316:  char message[50];
+        -:  317:
+        9:  318:  for (int i = 0; i < 8; i++)
+        -:  319:  {
+        8:  320:    ValidTesting(a, length, i);
+        8:  321:    sprintf(message, "Error in the index: %d", i);
+        8:  322:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  323:  }
+        -:  324:
+        1:  325:}
+------------------
+TEST_Sort_TestSameValuesArray_:
+function TEST_Sort_TestSameValuesArray_ called 1 returned 100% blocks executed 100%
+        1:  311:TEST(Sort, TestSameValuesArray)
+        -:  312:{
+        1:  313:  int a[] = {1, 1, 1, 1, 1};
+        1:  314:  int arrayOrdered[] = {1, 1, 1, 1, 1};
+        1:  315:  int length = 5;
+        -:  316:  char message[50];
+        -:  317:
+        9:  318:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  319:  {
+        8:  320:    ValidTesting(a, length, i);
+call    0 returned 100%
+        8:  321:    sprintf(message, "Error in the index: %d", i);
+        8:  322:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  323:  }
+        -:  324:
+        1:  325:}
+------------------
+TEST_Sort_TestSameValuesArray_run:
+function TEST_Sort_TestSameValuesArray_run called 1 returned 100% blocks executed 100%
+        1:  311:TEST(Sort, TestSameValuesArray)
+call    0 returned 100%
+------------------
+        -:  326:
+        2:  327:TEST(Sort, TestOneValueArray)
+        -:  328:{
+        1:  329:  int a[] = {1};
+        1:  330:  int arrayOrdered[] = {1};
+        1:  331:  int length = 1;
+        1:  332:  const char *type = "On";
+        -:  333:  char message[50];
+        -:  334:
+        9:  335:  for (int i = 0; i < 8; i++)
+        -:  336:  {
+        8:  337:    sprintf(message, "Error in the index: %d", i);
+        8:  338:    if (i < 2)
+        -:  339:    {
+        2:  340:      sort(a, length, (char *)type, i);
+        -:  341:    }
+        6:  342:    else if (i >= 2 && i < 5)
+        -:  343:    {
+        3:  344:      type = "On2";
+        3:  345:      sort(a, length, (char *)type, i);
+        -:  346:    }
+        -:  347:    else
+        -:  348:    {
+        3:  349:      type = "Onlogn";
+        3:  350:      sort(a, length, (char *)type, i);
+        -:  351:    }
+        -:  352:
+        8:  353:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  354:  }
+        1:  355:}
+------------------
+TEST_Sort_TestOneValueArray_:
+function TEST_Sort_TestOneValueArray_ called 1 returned 100% blocks executed 100%
+        1:  327:TEST(Sort, TestOneValueArray)
+        -:  328:{
+        1:  329:  int a[] = {1};
+        1:  330:  int arrayOrdered[] = {1};
+        1:  331:  int length = 1;
+        1:  332:  const char *type = "On";
+        -:  333:  char message[50];
+        -:  334:
+        9:  335:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  336:  {
+        8:  337:    sprintf(message, "Error in the index: %d", i);
+        8:  338:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  339:    {
+        2:  340:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  341:    }
+        6:  342:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  343:    {
+        3:  344:      type = "On2";
+        3:  345:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  346:    }
+        -:  347:    else
+        -:  348:    {
+        3:  349:      type = "Onlogn";
+        3:  350:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  351:    }
+        -:  352:
+        8:  353:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  354:  }
+        1:  355:}
+------------------
+TEST_Sort_TestOneValueArray_run:
+function TEST_Sort_TestOneValueArray_run called 1 returned 100% blocks executed 100%
+        1:  327:TEST(Sort, TestOneValueArray)
+call    0 returned 100%
+------------------
+        -:  356:
+        -:  357:
+        2:  358:TEST(Sort, TestOrderedArray)
+        -:  359:{
+        1:  360:  int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  361:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  362:  int length = 20;
+        1:  363:  const char *type = "On";
+        -:  364:  char message[50];
+        -:  365:
+        9:  366:  for (int i = 0; i < 8; i++)
+        -:  367:  {
+        8:  368:    sprintf(message, "Error in the index: %d", i);
+        8:  369:    if (i < 2)
+        -:  370:    {
+        2:  371:      sort(a, length, (char *)type, i);
+        -:  372:    }
+        6:  373:    else if (i >= 2 && i < 5)
+        -:  374:    {
+        3:  375:      type = "On2";
+        3:  376:      sort(a, length, (char *)type, i);
+        -:  377:    }
+        -:  378:    else
+        -:  379:    {
+        3:  380:      type = "Onlogn";
+        3:  381:      sort(a, length, (char *)type, i);
+        -:  382:    }
+        -:  383:
+        8:  384:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  385:  }
+        1:  386:}
+------------------
+TEST_Sort_TestOrderedArray_:
+function TEST_Sort_TestOrderedArray_ called 1 returned 100% blocks executed 100%
+        1:  358:TEST(Sort, TestOrderedArray)
+        -:  359:{
+        1:  360:  int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  361:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  362:  int length = 20;
+        1:  363:  const char *type = "On";
+        -:  364:  char message[50];
+        -:  365:
+        9:  366:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  367:  {
+        8:  368:    sprintf(message, "Error in the index: %d", i);
+        8:  369:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  370:    {
+        2:  371:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  372:    }
+        6:  373:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  374:    {
+        3:  375:      type = "On2";
+        3:  376:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  377:    }
+        -:  378:    else
+        -:  379:    {
+        3:  380:      type = "Onlogn";
+        3:  381:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  382:    }
+        -:  383:
+        8:  384:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 returned 100%
+        -:  385:  }
+        1:  386:}
+------------------
+TEST_Sort_TestOrderedArray_run:
+function TEST_Sort_TestOrderedArray_run called 1 returned 100% blocks executed 100%
+        1:  358:TEST(Sort, TestOrderedArray)
+call    0 returned 100%
+------------------
+        -:  387:
+        2:  388:TEST(Sort, TestLowerHalfArray)
+        -:  389:{
+        1:  390:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  391:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  392:  int length = 20;
+        1:  393:  const char *type = "On";
+        -:  394:  char message[50];
+        -:  395:
+        9:  396:  for (int i = 0; i < 8; i++)
+        -:  397:  {
+        8:  398:    sprintf(message, "Error in the index: %d", i);
+        -:  399:    
+        8:  400:    if (i < 2)
+        -:  401:    {
+        2:  402:      sort(a, length, (char *)type, i);
+        -:  403:    }
+        6:  404:    else if (i >= 2 && i < 5)
+        -:  405:    {
+        3:  406:      type = "On2";
+        3:  407:      sort(a, length, (char *)type, i);
+        -:  408:    }
+        -:  409:    else
+        -:  410:    {
+        3:  411:      type = "Onlogn";
+        3:  412:      sort(a, length, (char *)type, i);
+        -:  413:    }
+        -:  414:
+       88:  415:    for (int k = 0; k < 10; k++)
+        -:  416:    {
+       80:  417:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+        -:  418:    }
+        -:  419:
+      168:  420:    for (int j = length; j > 0; j--)
+        -:  421:    {
+      160:  422:      a[length - j] = j;
+        -:  423:    }
+        -:  424:  }
+        1:  425:}
+------------------
+TEST_Sort_TestLowerHalfArray_:
+function TEST_Sort_TestLowerHalfArray_ called 1 returned 100% blocks executed 100%
+        1:  388:TEST(Sort, TestLowerHalfArray)
+        -:  389:{
+        1:  390:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  391:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  392:  int length = 20;
+        1:  393:  const char *type = "On";
+        -:  394:  char message[50];
+        -:  395:
+        9:  396:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  397:  {
+        8:  398:    sprintf(message, "Error in the index: %d", i);
+        -:  399:    
+        8:  400:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  401:    {
+        2:  402:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  403:    }
+        6:  404:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  405:    {
+        3:  406:      type = "On2";
+        3:  407:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  408:    }
+        -:  409:    else
+        -:  410:    {
+        3:  411:      type = "Onlogn";
+        3:  412:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  413:    }
+        -:  414:
+       88:  415:    for (int k = 0; k < 10; k++)
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+        -:  416:    {
+       80:  417:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+call    0 returned 100%
+        -:  418:    }
+        -:  419:
+      168:  420:    for (int j = length; j > 0; j--)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  421:    {
+      160:  422:      a[length - j] = j;
+        -:  423:    }
+        -:  424:  }
+        1:  425:}
+------------------
+TEST_Sort_TestLowerHalfArray_run:
+function TEST_Sort_TestLowerHalfArray_run called 1 returned 100% blocks executed 100%
+        1:  388:TEST(Sort, TestLowerHalfArray)
+call    0 returned 100%
+------------------
+        -:  426:
+        2:  427:TEST(Sort, TestUpperHalfArray)
+        -:  428:{
+        1:  429:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  430:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  431:  int length = 20;
+        1:  432:  const char *type = "On";
+        -:  433:  char message[50];
+        -:  434:
+        9:  435:  for (int i = 0; i < 8; i++)
+        -:  436:  {
+        8:  437:    sprintf(message, "Error in the index: %d", i);
+        -:  438:    
+        8:  439:    if (i < 2)
+        -:  440:    {
+        2:  441:      sort(a, length, (char *)type, i);
+        -:  442:    }
+        6:  443:    else if (i >= 2 && i < 5)
+        -:  444:    {
+        3:  445:      type = "On2";
+        3:  446:      sort(a, length, (char *)type, i);
+        -:  447:    }
+        -:  448:    else
+        -:  449:    {
+        3:  450:      type = "Onlogn";
+        3:  451:      sort(a, length, (char *)type, i);
+        -:  452:    }
+        -:  453:
+       88:  454:    for (int k = 10; k < 20; k++)
+        -:  455:    {
+       80:  456:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+        -:  457:    }
+        -:  458:
+      168:  459:    for (int j = length; j > 0; j--)
+        -:  460:    {
+      160:  461:      a[length - j] = j;
+        -:  462:    }
+        -:  463:  }
+        1:  464:}
+------------------
+TEST_Sort_TestUpperHalfArray_:
+function TEST_Sort_TestUpperHalfArray_ called 1 returned 100% blocks executed 100%
+        1:  427:TEST(Sort, TestUpperHalfArray)
+        -:  428:{
+        1:  429:  int a[] = {19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2};
+        1:  430:  int arrayOrdered[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ,19, 20};
+        1:  431:  int length = 20;
+        1:  432:  const char *type = "On";
+        -:  433:  char message[50];
+        -:  434:
+        9:  435:  for (int i = 0; i < 8; i++)
+branch  0 taken 89%
+branch  1 taken 11% (fallthrough)
+        -:  436:  {
+        8:  437:    sprintf(message, "Error in the index: %d", i);
+        -:  438:    
+        8:  439:    if (i < 2)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -:  440:    {
+        2:  441:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  442:    }
+        6:  443:    else if (i >= 2 && i < 5)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        -:  444:    {
+        3:  445:      type = "On2";
+        3:  446:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  447:    }
+        -:  448:    else
+        -:  449:    {
+        3:  450:      type = "Onlogn";
+        3:  451:      sort(a, length, (char *)type, i);
+call    0 returned 100%
+        -:  452:    }
+        -:  453:
+       88:  454:    for (int k = 10; k < 20; k++)
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+        -:  455:    {
+       80:  456:      TEST_ASSERT_EQUAL_INT32_MESSAGE(arrayOrdered[k], a[k], message);
+call    0 returned 100%
+        -:  457:    }
+        -:  458:
+      168:  459:    for (int j = length; j > 0; j--)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  460:    {
+      160:  461:      a[length - j] = j;
+        -:  462:    }
+        -:  463:  }
+        1:  464:}
+------------------
+TEST_Sort_TestUpperHalfArray_run:
+function TEST_Sort_TestUpperHalfArray_run called 1 returned 100% blocks executed 100%
+        1:  427:TEST(Sort, TestUpperHalfArray)
+call    0 returned 100%
+------------------
+        -:  465:
+    #####:  466:TEST(Sort, TestEmptyArray)
+        -:  467:{
+    #####:  468:  int a[] = {};
+    #####:  469:  int arrayOrdered[] = {};
+    #####:  470:  int length = 0;
+    #####:  471:  const char *type = "On";
+        -:  472:  char message[50];
+        -:  473:
+    #####:  474:  for (int i = 0; i < 8; i++)
+        -:  475:  {
+    #####:  476:    sprintf(message, "Error in the index: %d", i);
+    #####:  477:    if (i < 2)
+        -:  478:    {
+    #####:  479:      sort(a, length, (char *)type, i);
+        -:  480:    }
+    #####:  481:    else if (i >= 2 && i < 5)
+        -:  482:    {
+    #####:  483:      type = "On2";
+    #####:  484:      sort(a, length, (char *)type, i);
+        -:  485:    }
+        -:  486:    else
+        -:  487:    {
+    #####:  488:      type = "Onlogn";
+    #####:  489:      sort(a, length, (char *)type, i);
+        -:  490:    }
+        -:  491:
+    #####:  492:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  493:  }
+    #####:  494:}
+------------------
+TEST_Sort_TestEmptyArray_:
+function TEST_Sort_TestEmptyArray_ called 0 returned 0% blocks executed 0%
+    #####:  466:TEST(Sort, TestEmptyArray)
+        -:  467:{
+    #####:  468:  int a[] = {};
+    #####:  469:  int arrayOrdered[] = {};
+    #####:  470:  int length = 0;
+    #####:  471:  const char *type = "On";
+        -:  472:  char message[50];
+        -:  473:
+    #####:  474:  for (int i = 0; i < 8; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  475:  {
+    #####:  476:    sprintf(message, "Error in the index: %d", i);
+    #####:  477:    if (i < 2)
+branch  0 never executed
+branch  1 never executed
+        -:  478:    {
+    #####:  479:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  480:    }
+    #####:  481:    else if (i >= 2 && i < 5)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  482:    {
+    #####:  483:      type = "On2";
+    #####:  484:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  485:    }
+        -:  486:    else
+        -:  487:    {
+    #####:  488:      type = "Onlogn";
+    #####:  489:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  490:    }
+        -:  491:
+    #####:  492:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 never executed
+        -:  493:  }
+    #####:  494:}
+------------------
+TEST_Sort_TestEmptyArray_run:
+function TEST_Sort_TestEmptyArray_run called 0 returned 0% blocks executed 0%
+    #####:  466:TEST(Sort, TestEmptyArray)
+call    0 never executed
+------------------
+        -:  495:
+    #####:  496:TEST(Sort, TestFloatValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive float values
+        -:  497:{
+    #####:  498:  float a[] = {2.6, 3.7, 3.8, 3.9, 4, 1.1, 1.2, 1.3, 2.4, 2.5};
+    #####:  499:  float arrayOrdered[] = {1.1, 1.2, 1.3, 2.4, 2.5, 2.6, 3.7, 3.8, 3.9, 4};
+    #####:  500:  int length = 10;
+    #####:  501:  const char *type = "On";
+        -:  502:  char message[50];
+        -:  503:
+    #####:  504:  for (int i = 0; i < 8; i++)
+        -:  505:  {
+    #####:  506:    sprintf(message, "Error in the index: %d", i);
+        -:  507:    
+    #####:  508:    if (i < 2)
+        -:  509:    {
+    #####:  510:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  511:    }
+    #####:  512:    else if (i >= 2 && i < 5)
+        -:  513:    {
+    #####:  514:      type = "On2";
+    #####:  515:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  516:    }
+        -:  517:    else
+        -:  518:    {
+    #####:  519:      type = "Onlogn";
+    #####:  520:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  521:    }
+        -:  522:
+    #####:  523:    TEST_ASSERT_EQUAL_FLOAT_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  524:
+        -:  525:  }
+    #####:  526:}
+------------------
+TEST_Sort_TestFloatValueArray_:
+function TEST_Sort_TestFloatValueArray_ called 0 returned 0% blocks executed 0%
+    #####:  496:TEST(Sort, TestFloatValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive float values
+        -:  497:{
+    #####:  498:  float a[] = {2.6, 3.7, 3.8, 3.9, 4, 1.1, 1.2, 1.3, 2.4, 2.5};
+    #####:  499:  float arrayOrdered[] = {1.1, 1.2, 1.3, 2.4, 2.5, 2.6, 3.7, 3.8, 3.9, 4};
+    #####:  500:  int length = 10;
+    #####:  501:  const char *type = "On";
+        -:  502:  char message[50];
+        -:  503:
+    #####:  504:  for (int i = 0; i < 8; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  505:  {
+    #####:  506:    sprintf(message, "Error in the index: %d", i);
+        -:  507:    
+    #####:  508:    if (i < 2)
+branch  0 never executed
+branch  1 never executed
+        -:  509:    {
+    #####:  510:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  511:    }
+    #####:  512:    else if (i >= 2 && i < 5)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  513:    {
+    #####:  514:      type = "On2";
+    #####:  515:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  516:    }
+        -:  517:    else
+        -:  518:    {
+    #####:  519:      type = "Onlogn";
+    #####:  520:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  521:    }
+        -:  522:
+    #####:  523:    TEST_ASSERT_EQUAL_FLOAT_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 never executed
+        -:  524:
+        -:  525:  }
+    #####:  526:}
+------------------
+TEST_Sort_TestFloatValueArray_run:
+function TEST_Sort_TestFloatValueArray_run called 0 returned 0% blocks executed 0%
+    #####:  496:TEST(Sort, TestFloatValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive float values
+call    0 never executed
+------------------
+        -:  527:
+    #####:  528:TEST(Sort, TestCharValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive char values
+        -:  529:{
+    #####:  530:  char a[] = {'a', 'b', 'c', 'd', 'e'};
+    #####:  531:  char arrayOrdered[] = {'a', 'b', 'c', 'd', 'e'};
+    #####:  532:  int length = 5;
+    #####:  533:  const char *type = "On";
+        -:  534:  char message[50];
+        -:  535:
+    #####:  536:  for (int i = 0; i < 8; i++)
+        -:  537:  {
+    #####:  538:    sprintf(message, "Error in the index: %d", i);
+        -:  539:    
+    #####:  540:    if (i < 2)
+        -:  541:    {
+    #####:  542:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  543:    }
+    #####:  544:    else if (i >= 2 && i < 5)
+        -:  545:    {
+    #####:  546:      type = "On2";
+    #####:  547:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  548:    }
+        -:  549:    else
+        -:  550:    {
+    #####:  551:      type = "Onlogn";
+    #####:  552:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+        -:  553:    }
+        -:  554:
+    #####:  555:    TEST_ASSERT_EQUAL_STRING_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  556:
+        -:  557:  }
+    #####:  558:}
+------------------
+TEST_Sort_TestCharValueArray_:
+function TEST_Sort_TestCharValueArray_ called 0 returned 0% blocks executed 0%
+    #####:  528:TEST(Sort, TestCharValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive char values
+        -:  529:{
+    #####:  530:  char a[] = {'a', 'b', 'c', 'd', 'e'};
+    #####:  531:  char arrayOrdered[] = {'a', 'b', 'c', 'd', 'e'};
+    #####:  532:  int length = 5;
+    #####:  533:  const char *type = "On";
+        -:  534:  char message[50];
+        -:  535:
+    #####:  536:  for (int i = 0; i < 8; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  537:  {
+    #####:  538:    sprintf(message, "Error in the index: %d", i);
+        -:  539:    
+    #####:  540:    if (i < 2)
+branch  0 never executed
+branch  1 never executed
+        -:  541:    {
+    #####:  542:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  543:    }
+    #####:  544:    else if (i >= 2 && i < 5)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  545:    {
+    #####:  546:      type = "On2";
+    #####:  547:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  548:    }
+        -:  549:    else
+        -:  550:    {
+    #####:  551:      type = "Onlogn";
+    #####:  552:      sort((void *)&a, length, (char *)type, i); // Needed to add this "(void *)&" to remove warning pointing type mismatch
+call    0 never executed
+        -:  553:    }
+        -:  554:
+    #####:  555:    TEST_ASSERT_EQUAL_STRING_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 never executed
+        -:  556:
+        -:  557:  }
+    #####:  558:}
+------------------
+TEST_Sort_TestCharValueArray_run:
+function TEST_Sort_TestCharValueArray_run called 0 returned 0% blocks executed 0%
+    #####:  528:TEST(Sort, TestCharValueArray) // This test generates segmentation fault error, indicating that the sort function cannot receive char values
+call    0 never executed
+------------------
+        -:  559:
+    #####:  560:TEST(Sort, TestNegativeValuesArray) // This test generates segmentation fault error, indicating that the sort function cannot receive negative integer values
+        -:  561:{
+    #####:  562:  int a[] = {-5, -4, -3, -2, -1};
+    #####:  563:  int arrayOrdered[] = {-1, -2, -3, -4, -5};
+    #####:  564:  int length = 5;
+    #####:  565:  const char *type = "On";
+        -:  566:  char message[50];
+        -:  567:
+    #####:  568:  for (int i = 0; i < 8; i++)
+        -:  569:  {
+    #####:  570:    sprintf(message, "Error in the index: %d", i);
+        -:  571:
+    #####:  572:    if (i < 2)
+        -:  573:    {
+    #####:  574:      sort(a, length, (char *)type, i);
+        -:  575:    }
+    #####:  576:    else if (i >= 2 && i < 5)
+        -:  577:    {
+    #####:  578:      type = "On2";
+    #####:  579:      sort(a, length, (char *)type, i);
+        -:  580:    }
+        -:  581:    else
+        -:  582:    {
+    #####:  583:      type = "Onlogn";
+    #####:  584:      sort(a, length, (char *)type, i);
+        -:  585:    }
+        -:  586:
+    #####:  587:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+        -:  588:
+    #####:  589:    for (int j = length; j > 0; j--)
+        -:  590:    {
+    #####:  591:      a[length - j] = -j;
+        -:  592:    }
+        -:  593:  }
+    #####:  594:}
+------------------
+TEST_Sort_TestNegativeValuesArray_:
+function TEST_Sort_TestNegativeValuesArray_ called 0 returned 0% blocks executed 0%
+    #####:  560:TEST(Sort, TestNegativeValuesArray) // This test generates segmentation fault error, indicating that the sort function cannot receive negative integer values
+        -:  561:{
+    #####:  562:  int a[] = {-5, -4, -3, -2, -1};
+    #####:  563:  int arrayOrdered[] = {-1, -2, -3, -4, -5};
+    #####:  564:  int length = 5;
+    #####:  565:  const char *type = "On";
+        -:  566:  char message[50];
+        -:  567:
+    #####:  568:  for (int i = 0; i < 8; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  569:  {
+    #####:  570:    sprintf(message, "Error in the index: %d", i);
+        -:  571:
+    #####:  572:    if (i < 2)
+branch  0 never executed
+branch  1 never executed
+        -:  573:    {
+    #####:  574:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  575:    }
+    #####:  576:    else if (i >= 2 && i < 5)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  577:    {
+    #####:  578:      type = "On2";
+    #####:  579:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  580:    }
+        -:  581:    else
+        -:  582:    {
+    #####:  583:      type = "Onlogn";
+    #####:  584:      sort(a, length, (char *)type, i);
+call    0 never executed
+        -:  585:    }
+        -:  586:
+    #####:  587:    TEST_ASSERT_EQUAL_INT32_ARRAY_MESSAGE(arrayOrdered, a, length, message);
+call    0 never executed
+        -:  588:
+    #####:  589:    for (int j = length; j > 0; j--)
+branch  0 never executed
+branch  1 never executed
+        -:  590:    {
+    #####:  591:      a[length - j] = -j;
+        -:  592:    }
+        -:  593:  }
+    #####:  594:}
+------------------
+TEST_Sort_TestNegativeValuesArray_run:
+function TEST_Sort_TestNegativeValuesArray_run called 0 returned 0% blocks executed 0%
+    #####:  560:TEST(Sort, TestNegativeValuesArray) // This test generates segmentation fault error, indicating that the sort function cannot receive negative integer values
+call    0 never executed
+------------------

@@ -1,0 +1,28 @@
+        -:    0:Source:src/insertion_sort.c
+        -:    1://Implementation of Insertion sort in C
+        -:    2:#include <stdio.h>
+        -:    3:#include <stdlib.h>
+        -:    4:typedef int TYPE;
+        -:    5:void insertion_sort(TYPE [], int);
+        -:    6:
+function insertion_sort called 11 returned 100% blocks executed 100%
+       11:    7:void insertion_sort(TYPE A[], int n) {
+        -:    8:    int i, j;
+        -:    9:    TYPE temp;
+        -:   10:    
+      127:   11:    for(i = 1; i < n; i++) {
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+      116:   12:        temp = A[i];
+      116:   13:        j = i;
+      887:   14:        while(j > 0 && A[j-1] > temp) {
+branch  0 taken 91% (fallthrough)
+branch  1 taken 9%
+branch  2 taken 96%
+branch  3 taken 4% (fallthrough)
+      771:   15:            A[j] = A[j - 1];
+      771:   16:            j--;
+        -:   17:        }
+      116:   18:        A[j] = temp;
+        -:   19:    }
+       11:   20:}

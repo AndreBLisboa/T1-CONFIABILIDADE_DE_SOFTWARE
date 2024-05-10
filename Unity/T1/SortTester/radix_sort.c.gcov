@@ -1,0 +1,154 @@
+        -:    0:Source:src/radix_sort.c
+        -:    1:/*Implementation of Radix sort via queue in C. 
+        -:    2:    This implementation works with integers*/
+        -:    3:#include <stdio.h>
+        -:    4:#include <stdlib.h>
+        -:    5:#define MAX_BUCKETS 10
+        -:    6:typedef int TYPE;
+        -:    7:typedef struct node_st { 
+        -:    8:    TYPE inf;
+        -:    9:    struct node_st *pnext;
+        -:   10:} NODE;
+        -:   11:typedef struct queue_st {
+        -:   12:    NODE *pbegin, *pend;
+        -:   13:} QUEUE;
+        -:   14:
+        -:   15:void init_queue(QUEUE *);
+        -:   16:NODE *make_node(TYPE);
+        -:   17:void inqueue(QUEUE *, TYPE );
+        -:   18:TYPE dequeue(QUEUE *);
+        -:   19:int is_empty(QUEUE);
+        -:   20:
+        -:   21:int find_max_significant(TYPE [], int);
+        -:   22:void radix_sort(TYPE [], int);
+        -:   23:
+function radix_sort called 11 returned 100% blocks executed 100%
+       11:   24:void radix_sort(TYPE a[], int length){
+        -:   25:    QUEUE buckets[MAX_BUCKETS]; // buckets for 0, 1, 2, ... 9 significant digits
+        -:   26:    int i, j;
+      121:   27:    for(i = 0; i < MAX_BUCKETS; i++)
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+      110:   28:        init_queue(&buckets[i]);
+call    0 returned 100%
+        -:   29:    
+       11:   30:    int k = find_max_significant(a, length);
+call    0 returned 100%
+       11:   31:    int m = 10, n = 1, p;
+        -:   32:    
+       27:   33:    for(i = 0; i < k; i++){
+branch  0 taken 59%
+branch  1 taken 41% (fallthrough)
+      243:   34:        for(j = 0; j < length; j++){
+branch  0 taken 93%
+branch  1 taken 7% (fallthrough)
+      227:   35:            inqueue(&buckets[((int)a[j]%m)/n], a[j]);
+call    0 returned 100%
+        -:   36:        }
+      176:   37:        for(p = 0, j = 0; j < MAX_BUCKETS; j++){
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+      387:   38:            while(!is_empty(buckets[j])) {
+call    0 returned 100%
+branch  1 taken 59%
+branch  2 taken 41% (fallthrough)
+      227:   39:                a[p++] = dequeue(&buckets[j]); 
+call    0 returned 100%
+        -:   40:                //first a[p] = ... is done and then p++ afterwards.
+        -:   41:            }
+        -:   42:        }
+       16:   43:        n*=10;
+       16:   44:        m*=10;
+        -:   45:    }
+       11:   46:}
+        -:   47:
+function init_queue called 110 returned 100% blocks executed 100%
+      110:   48:void init_queue(QUEUE *pque){
+      110:   49:    pque->pbegin = pque->pend = NULL;
+      110:   50:} 
+function make_node called 227 returned 100% blocks executed 60%
+      227:   51:NODE *make_node(TYPE inf){
+      227:   52:    NODE *pnew = malloc(sizeof(NODE));
+      227:   53:    if(pnew == NULL){
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   54:        puts("ERROR: Out of RAM!");
+call    0 never executed
+    #####:   55:        exit(4);
+call    0 never executed
+        -:   56:    }
+      227:   57:    pnew->inf = inf;
+      227:   58:    pnew->pnext = NULL;
+      227:   59:    return pnew;
+        -:   60:}
+function inqueue called 227 returned 100% blocks executed 100%
+      227:   61:void inqueue(QUEUE *pque, TYPE inf){
+      227:   62:    NODE *pnew = make_node(inf);
+call    0 returned 100%
+        -:   63:    
+        -:   64:    /*This would mean that my queue is empty*/
+      227:   65:    if(pque->pbegin == NULL) {
+branch  0 taken 39% (fallthrough)
+branch  1 taken 61%
+       88:   66:        pque->pbegin = pque->pend = pnew;
+        -:   67:    }
+        -:   68:    else {
+      139:   69:        pque->pend->pnext = pnew;
+      139:   70:        pque->pend = pnew;
+        -:   71:    }
+      227:   72:}
+function dequeue called 227 returned 100% blocks executed 75%
+      227:   73:TYPE dequeue(QUEUE *pque) {
+      227:   74:    NODE *ptemp = pque->pbegin;    
+      227:   75:    if(ptemp == NULL) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   76:        puts("ERROR: You tried to dequeue an empty queue.");
+call    0 never executed
+    #####:   77:        exit(5);
+call    0 never executed
+        -:   78:    }
+        -:   79:    TYPE x;
+        -:   80:    
+        -:   81:    /*If below means that they are on last element (ex. pbegin--- 36 
+        -:   82:                                                                                                /
+        -:   83:                                                                                            pend    )*/
+      227:   84:    if(pque->pbegin == pque->pend) pque->pend = pque->pbegin = NULL;
+branch  0 taken 39% (fallthrough)
+branch  1 taken 61%
+      139:   85:    else pque->pbegin = ptemp->pnext;
+      227:   86:    x = ptemp->inf;
+        -:   87:    
+      227:   88:    free(ptemp);
+      227:   89:    return x;
+        -:   90:    
+        -:   91:}
+        -:   92:/*returns 1 if it is and 0 if it isn't*/
+function is_empty called 387 returned 100% blocks executed 100%
+      387:   93:int is_empty(QUEUE pque) {
+      387:   94:    if(pque.pbegin == NULL) return 1;
+branch  0 taken 41% (fallthrough)
+branch  1 taken 59%
+      227:   95:    else return 0;
+        -:   96:}
+function find_max_significant called 11 returned 100% blocks executed 100%
+       11:   97:int find_max_significant(TYPE a[], int length){
+       11:   98:    int i = 0; 
+       11:   99:    TYPE max = a[0];
+        -:  100:    
+      127:  101:    while(++i < length) {
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+      116:  102:        if(a[i] > max) max = a[i];
+branch  0 taken 27% (fallthrough)
+branch  1 taken 73%
+        -:  103:    }
+       11:  104:    int nb_digits = 0;
+       27:  105:    while(max != 0) {
+branch  0 taken 59%
+branch  1 taken 41% (fallthrough)
+       16:  106:        ++nb_digits;
+       16:  107:        max = (int)max / 10;
+        -:  108:    }
+       11:  109:    return nb_digits;
+        -:  110:}

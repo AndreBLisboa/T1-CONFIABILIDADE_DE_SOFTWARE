@@ -87,7 +87,9 @@ sanitizer:
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
-	gcov -b all_tests.out-sort.c
+	@echo $(wildcard *.gcda)
+	gcov -b $(filter-out ../../src/unity.c ../../extras/fixture/src/unity_fixture.c,$(wildcard *.gcda))
 
+	
 ci: CFLAGS += -Werror
 ci: compile

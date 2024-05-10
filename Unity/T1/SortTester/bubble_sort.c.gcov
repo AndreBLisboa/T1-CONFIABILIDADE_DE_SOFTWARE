@@ -1,0 +1,35 @@
+        -:    0:Source:src/bubble_sort.c
+        -:    1://Implementation of Bubble sort in C
+        -:    2:#include <stdio.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#define swap(t, x, y) t z = x; x = y; y = z;
+        -:    5:typedef int TYPE;
+        -:    6:void bubble_sort(TYPE [], int);
+        -:    7:
+function bubble_sort called 11 returned 100% blocks executed 100%
+       11:    8:void bubble_sort(TYPE A[], int n) {
+        -:    9:    int i, j, sorted;
+        -:   10:    
+       92:   11:    for(i = 0; i < n; i++) {
+branch  0 taken 100%
+branch  1 taken 0% (fallthrough)
+       92:   12:        sorted = 1; 
+        -:   13:        
+     1669:   14:        for(j = 0; j < n - 1; j++) {
+branch  0 taken 94%
+branch  1 taken 6% (fallthrough)
+     1577:   15:            if(A[j] > A[j + 1]) {
+branch  0 taken 49% (fallthrough)
+branch  1 taken 51%
+      771:   16:                swap(TYPE, A[j], A[j+1]);
+      771:   17:                sorted = 0;
+        -:   18:            }
+        -:   19:        }
+        -:   20:        
+       92:   21:        if(sorted) break; 
+branch  0 taken 12% (fallthrough)
+branch  1 taken 88%
+        -:   22:        /*if array is sorted break. 
+        -:   23:        This way we have O(n) in best case, instead of always O(n^2)*/
+        -:   24:    }
+       11:   25:}
